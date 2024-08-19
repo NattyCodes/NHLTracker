@@ -1,0 +1,13 @@
+:root{
+    --foreground-rgb: #FFFFFF;
+    --background-rgb: #030136;
+}
+
+html{
+    background: var(--background-rgb);
+}
+body{
+    background: (var(--background-rgb));
+    align-self: auto;
+    display: flex;
+}
