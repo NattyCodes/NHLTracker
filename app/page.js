@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import "./globals.css";
 import styles from './Home.module.css';
+import Standings from "./standings";
 export default async function Home() {
   const data = await fetch('https://api-web.nhle.com/v1/standings/2024-04-18'); 
   const jsonData = await data.json();
@@ -20,7 +21,8 @@ export default async function Home() {
           <th>GP</th>
         </tr>
         </thead>
-        <tbody>
+        <Standings standings={standings} />
+        {/* <tbody>
           {Array.isArray(standings) && standings.map(team =>
             <tr key={team.teamAbbrev.default} className={styles.row}>
               <td><Image src={team.teamLogo} width={40} height={40} alt={team.teamAbbrev.default}></Image></td>
@@ -31,7 +33,7 @@ export default async function Home() {
               <td>{team.otLosses}</td>
               <td>{team.gamesPlayed}</td>
             </tr>)}
-        </tbody>
+        </tbody> */}
       </table>
     </main>
   );
