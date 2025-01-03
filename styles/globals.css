@@ -11,3 +11,7 @@ body{
     align-self: auto;
     display: flex;
 }
+
+p {
+    color: white;
+}

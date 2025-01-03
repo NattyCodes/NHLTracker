@@ -2,8 +2,8 @@
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import React from 'react';
-import "./globals.css";
-import styles from './Home.module.css';
+import "../styles/globals.css";
+import styles from '../styles/Home.module.css';
 const Standings = (props) => {
   const standings = props.standings
   const router = useRouter()
@@ -11,10 +11,10 @@ const Standings = (props) => {
     <tbody>
           {Array.isArray(standings) && standings.map(team =>
             <tr key={team.teamAbbrev.default} className={styles.row} onClick={() => {
-                router.push('/teams/' + team.teamAbbrev.default)
+                router.push(`/teams/${team.teamAbbrev.default}?name=${team.teamName.default}`)
             }}>
               <td><Image src={team.teamLogo} width={40} height={40} alt={team.teamAbbrev.default}></Image></td>
-              <td>{team.teamCommonName.default}</td>
+              <td>{team.teamName.default}</td>
               <td>{team.points}</td>
               <td>{team.wins}</td>
               <td>{team.losses}</td>
