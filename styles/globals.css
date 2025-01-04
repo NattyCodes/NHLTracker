@@ -5,11 +5,18 @@
 
 html{
     background: var(--background-rgb);
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    padding: 0%;
+    border: 0%;
+    margin: 0%;
 }
 body{
     background: (var(--background-rgb));
     align-self: auto;
     display: flex;
+    padding: 0%;
+    border: 0%;
+    margin: 0%;
 }
 
 p {
