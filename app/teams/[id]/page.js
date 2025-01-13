@@ -5,7 +5,7 @@ import styles from "../../../styles/Home.module.css";
 import Skaters from "./skaters.js";
 
 const Teams = async ({params, searchParams}) => {
-    const res = await fetch('https://api-web.nhle.com/v1/club-stats/'+ params.id +'/now');
+    const res = await fetch('https://api-web.nhle.com/v1/club-stats/'+ params.id +'/now', { cache: 'no-store' });
     const teamInfo = await res.json();
     const skaters = teamInfo.skaters
     for (let i = 0; i < skaters.length; i++) {
