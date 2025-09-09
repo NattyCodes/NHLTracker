@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import React from 'react';
-import "../../../styles/globals.css";
-import styles from "../../../styles/Player.module.css";
+import "../../../styles/globals.scss";
+import styles from "../../../styles/Player.module.scss";
 import "../../convertAbrvToFull.js";
 import PlayerStats from './playerStats';
 

@@ -2,8 +2,8 @@
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
-import "../styles/globals.css";
-import styles from '../styles/Home.module.css';
+import "../styles/globals.scss";
+import styles from '../styles/Home.module.scss';
 const Standings = (props) => {
   const standings = props.standings
   const router = useRouter()

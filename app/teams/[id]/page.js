@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import React from 'react';
-import "../../../styles/globals.css";
-import styles from "../../../styles/Home.module.css";
+import "../../../styles/globals.scss";
+import styles from "../../../styles/Home.module.scss";
 import Skaters from "./skaters.js";
 
 const Teams = async ({params, searchParams}) => {

@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
-import "../styles/globals.css";
-import styles from '../styles/Home.module.css';
+import "../styles/globals.scss";
+import styles from '../styles/Home.module.scss';
 import Standings from "./standings";
 export const dynamic = 'force-dynamic'
 export default async function Home() {
