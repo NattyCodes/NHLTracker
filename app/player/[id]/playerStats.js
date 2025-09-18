@@ -17,26 +17,32 @@ const PlayerStats = (props) => {
     }
 
     useEffect(() => {
+        console.log(`selected season is ${selectedSeason}`)
         for(let i = 0; i < nhlSeasons.length; i++) {
             if(selectedSeason == nhlSeasons[i]) {
                 setSelectedSeasonIndex(i);
             }
-            if(regularSeasonStats[i].season == selectedSeason) {
+            if(`${regularSeasonStats[i].season} ${regularSeasonStats[i].teamName.default}` == selectedSeason) {
+                console.log(regularSeasonStats[i])
                 setCurrRegularSeason(regularSeasonStats[i])
             }
-            if(playoffStats[i] != null && playoffStats[i].season == selectedSeason) {
+            if(playoffStats[i] != null && `${playoffStats[i].season} ${playoffStats[i].teamName.default}` == selectedSeason) {
+                console.log(playoffStats[i])
                 setCurrPlayoffSeason(playoffStats[i])
             }
         }
     }, [selectedSeason, nhlSeasons, regularSeasonStats, playoffStats])
 
 
-    console.log(currRegularSeason);
+    // console.log(currRegularSeason);
     return (
         <div className={styles.container}>
             <select name='season' id='season' onChange={e => setSelectedSeason(e.target.value)}>
-                {nhlSeasons.map(nhlSeason => 
+                {/* {nhlSeasons.map(nhlSeason => 
                     <option key={nhlSeason} value={nhlSeason}>{formatSeason(nhlSeason)}</option>
+                )} */}
+                {regularSeasonStats.map(nhlSeason => 
+                    <option key={`${nhlSeason.season} ${nhlSeason.teamName.default}`} value={`${nhlSeason.season} ${nhlSeason.teamName.default}`}>{`${formatSeason(nhlSeason.season)} ${nhlSeason.teamName.default}`}</option>
                 )}
             </select>
             {/* <h2>{formatSeason(selectedSeason)} Regular Season Stats</h2>
@@ -47,7 +53,7 @@ const PlayerStats = (props) => {
             <p>Plus/Minus: {currRegularSeason.plusMinus}</p>
             <p>Shooting Percent: {(currRegularSeason.shootingPctg).toPrecision(4)}%</p> */}
             <SeasonStats season={formatSeason(selectedSeason)} gameType='Regular Season' stats={currRegularSeason}></SeasonStats>
-            {currPlayoffSeason && currPlayoffSeason.season == selectedSeason && 
+            {currPlayoffSeason && `${currPlayoffSeason.season} ${currPlayoffSeason.teamName.default}` == selectedSeason && 
             <div> 
                 {/* <h2>{formatSeason(selectedSeason)} Playoff Stats</h2>
                 <p>Goals: {currPlayoffSeason.goals}</p>

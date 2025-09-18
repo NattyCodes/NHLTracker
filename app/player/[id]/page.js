@@ -36,7 +36,7 @@ const player = async ({params}) => {
             if(currSeason.leagueAbbrev === "NHL") {
                 if(currSeason.gameTypeId === 2) {
                     statsByRegularSeason.push(currSeason);
-                    nhlSeasons.push(currSeason.season);
+                    nhlSeasons.push(`${currSeason.season} ${currSeason.teamName.default}`);
                     // statsByPlayoffSeason.push("")
                 } else if (currSeason.gameTypeId === 3){
                     statsByPlayoffSeason.push(currSeason);
@@ -45,7 +45,6 @@ const player = async ({params}) => {
         }
     }
     filterStats()
-    // console.log(statsByRegularSeason);
 
     const getPosition = () => {
         let position_name = ""
@@ -72,7 +71,7 @@ const player = async ({params}) => {
     return (
         <div className={styles.container}>
             <div className={styles.header_img_container}>
-                <Image src={playerInfo.heroImage} width={0} height={0} alt={`${playerInfo.firstName.default} ${playerInfo.lastName.default}`} sizes="50vw" style={{ width: '100%', height: '70vh'}}></Image>
+                <Image src={playerInfo.heroImage} width={0} height={0} alt={`${playerInfo.firstName.default} ${playerInfo.lastName.default}`} sizes="50vw" style={{ width: '100%', height: '70vh', opacity:0.6}} priority></Image>
                 <h1 className={styles.centered}>{playerInfo.firstName.default} {playerInfo.lastName.default}</h1>
             </div>
             <h1>Player Info</h1>
