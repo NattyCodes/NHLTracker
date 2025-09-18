@@ -1,3 +1,4 @@
+import { Table, TableCell, TableHead, TableRow } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
 import "../styles/globals.scss";
@@ -10,20 +11,20 @@ export default async function Home() {
   let standings = jsonData.standings;
   return (
     <main className={styles.main}>
-      <table className={styles.table}>
-        <thead className={styles.head}>
-        <tr>
-          <th>Logo</th>
-          <th>Team</th>
-          <th>P</th>
-          <th>W</th>
-          <th>L</th>
-          <th>OT</th>
-          <th>GP</th>
-        </tr>
-        </thead>
+      <Table>
+        <TableHead classes="head">
+          <TableRow>
+            <TableCell>Logo</TableCell>
+            <TableCell>Team</TableCell>
+            <TableCell>P</TableCell>
+            <TableCell>W</TableCell>
+            <TableCell>L</TableCell>
+            <TableCell>OT</TableCell>
+            <TableCell>GP</TableCell>
+          </TableRow>
+        </TableHead>
         <Standings standings={standings} />
-      </table>
+      </Table>
     </main>
   );
 }

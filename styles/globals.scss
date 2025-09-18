@@ -1,29 +1,29 @@
 @import 'colors.scss';
 :root{
     --foreground-rgb: #FFFFFF;
-    --background-rgb: #030136;
+    --background-rgb: $neutral-color-2;
 }
 
 html{
-    background: var(--background-rgb);
-    font-family: Georgia, 'Times New Roman', Times, serif;
+    // background: $neutral-color-1;
+    // font-family: Georgia, 'Times New Roman', Times, serif;
     padding: 0%;
     border: 0%;
     margin: 0%;
 }
-body{
-    background: (var(--background-rgb));
-    align-self: auto;
-    display: flex;
-    padding: 0%;
-    border: 0%;
-    margin: 0%;
-}
+// body{
+//     background: (var(--background-rgb));
+//     align-self: auto;
+//     display: flex;
+//     padding: 0%;
+//     border: 0%;
+//     margin: 0%;
+// }
 
-p {
-    color: white;
-}
+// p {
+//     color: white;
+// }
 
-h1, h2 {
-    color: white;
-}
+// h1, h2 {
+//     color: white;
+// }

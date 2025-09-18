@@ -1,4 +1,5 @@
 'use client'
+import { TableBody, TableCell, TableRow } from '@mui/material';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
@@ -16,20 +17,20 @@ const Standings = (props) => {
   }
 
   return (
-    <tbody>
+    <TableBody>
           {Array.isArray(standings) && standings.map(team =>
-            <tr key={team.teamAbbrev.default} className={styles.row} onClick={() => {
+            <TableRow key={team.teamAbbrev.default} className={styles.row} onClick={() => {
                 router.push(`/teams/${team.teamAbbrev.default}?` + createQueryString("name", team.teamName.default));
-          }}>
-              <td><Image src={team.teamLogo} width={40} height={40} alt={team.teamAbbrev.default}></Image></td>
-              <td>{team.teamName.default}</td>
-              <td>{team.points}</td>
-              <td>{team.wins}</td>
-              <td>{team.losses}</td>
-              <td>{team.otLosses}</td>
-              <td>{team.gamesPlayed}</td>
-            </tr>)}
-    </tbody>
+          }} hover sx={{cursor: 'pointer'}}>
+              <TableCell><Image src={team.teamLogo} width={40} height={40} alt={team.teamAbbrev.default}></Image></TableCell>
+              <TableCell>{team.teamName.default}</TableCell>
+              <TableCell>{team.points}</TableCell>
+              <TableCell>{team.wins}</TableCell>
+              <TableCell>{team.losses}</TableCell>
+              <TableCell>{team.otLosses}</TableCell>
+              <TableCell>{team.gamesPlayed}</TableCell>
+            </TableRow>)}
+    </TableBody>
   )
 }
 

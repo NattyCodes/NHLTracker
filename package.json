@@ -9,13 +9,21 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "next": "14.2.5",
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
+    "@fontsource/roboto": "^5.2.6",
+    "@mui/material": "^7.3.2",
+    "next": "^15.5.2",
     "react": "^18",
     "react-dom": "^18",
+    "react-is": "^18.3.1",
     "sass": "^1.92.1"
   },
   "devDependencies": {
     "eslint": "^8",
     "eslint-config-next": "14.2.5"
+  },
+  "overrides": {
+    "react-is": "^18.3.1"
   }
 }

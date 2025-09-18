@@ -1,4 +1,5 @@
 'use client'
+import { Table, TableBody, TableCell, TableHead, TableRow } from '@mui/material';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import React from 'react';
@@ -9,31 +10,31 @@ const Skaters = (props) =>{
     let skaters = props.skaters
     const router = useRouter()
     return (
-        <table className={styles.table}>
-            <thead className={styles.head}>
-            <tr>
-                <th></th>
-                <th>Player</th>
-                <th>Position</th>
-                <th>Points</th>
-                <th>Goals</th>
-                <th>Assists</th>
-            </tr>
-            </thead>
-            <tbody>
+        <Table className={styles.table}>
+            <TableHead className={styles.head}>
+            <TableRow>
+                <TableCell></TableCell>
+                <TableCell>Player</TableCell>
+                <TableCell>Position</TableCell>
+                <TableCell>Points</TableCell>
+                <TableCell>Goals</TableCell>
+                <TableCell>Assists</TableCell>
+            </TableRow>
+            </TableHead>
+            <TableBody>
                 {Array.isArray(skaters) && skaters.map(skater =>
-                <tr key={skater.playerID} className={styles.row} onClick={() => {
+                <TableRow key={skater.playerID} className={styles.row} onClick={() => {
                 router.push(`../player/${skater.playerId}`);
                 }}>
-                <td><Image src={skater.headshot} width={60} height={60} alt={skater.firstName.default}></Image></td>
-                <td>{skater.firstName.default} {skater.lastName.default}</td>
-                <td>{skater.positionCode}</td>
-                <td>{skater.points}</td>
-                <td>{skater.goals}</td>
-                <td>{skater.assists}</td>
-                </tr>)}
-            </tbody>
-        </table>
+                    <TableCell><Image src={skater.headshot} width={60} height={60} alt={skater.firstName.default} ></Image></TableCell>
+                    <TableCell>{skater.firstName.default} {skater.lastName.default}</TableCell>
+                    <TableCell>{skater.positionCode}</TableCell>
+                    <TableCell>{skater.points}</TableCell>
+                    <TableCell>{skater.goals}</TableCell>
+                    <TableCell>{skater.assists}</TableCell>
+                </TableRow>)}
+            </TableBody>
+        </Table>
     )
 }
 
