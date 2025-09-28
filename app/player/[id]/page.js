@@ -45,6 +45,7 @@ const player = async ({params}) => {
         }
     }
     filterStats()
+    console.log(playerInfo)
 
     const getPosition = () => {
         let position_name = ""
@@ -71,8 +72,14 @@ const player = async ({params}) => {
     return (
         <div className={styles.container}>
             <div className={styles.header_img_container}>
-                <Image src={playerInfo.heroImage} width={0} height={0} alt={`${playerInfo.firstName.default} ${playerInfo.lastName.default}`} sizes="50vw" style={{ width: '100%', height: '70vh', opacity:0.6}} priority></Image>
+                <Image src={playerInfo.heroImage} width={0} height={0} alt={`${playerInfo.firstName.default} ${playerInfo.lastName.default}`} sizes="50vw" style={{ width: '60%', height: '50vh', opacity:0.9}} priority></Image>
                 <h1 className={styles.centered}>{playerInfo.firstName.default} {playerInfo.lastName.default}</h1>
+            </div>
+            <div>
+                <Image src={playerInfo.headshot} width={100} height={100} alt={`${playerInfo.firstName.default} ${playerInfo.lastName.default}`} style={{ borderRadius: "100px"}} priority></Image>
+            </div>
+            <div>
+                <Image src={playerInfo.teamLogo} width={100} height={100} alt={`${playerInfo.firstName.default} ${playerInfo.lastName.default}`} priority></Image>
             </div>
             <h1>Player Info</h1>
             <h2>General Information</h2>
@@ -85,7 +92,6 @@ const player = async ({params}) => {
                {(dom_hand === "L") && "Left"}</p>
             <p>Height: {height_feet + "' " + height_inches + '"'}</p>
             <p>Weight: {playerInfo.weightInPounds + " lbs"}</p>
-            {/* <p>Born: {playerInfo.birthDate} ({getAge()} years old) in {playerInfo.birthCity.default} {playerInfo.birthStateProvince.default}</p> */}
             <p>Age: {getAge()}</p>
             <h2>Draft Information</h2>
             {playerInfo.draftDetails != null &&
@@ -97,13 +103,7 @@ const player = async ({params}) => {
             </div>}
             {playerInfo.draftDetails == null && <p>Undrafted</p>}
             <h2>Season Stats</h2>
-            {/* <select name='season' id='season' onChange={handleSeasonChange}>
-                {nhlSeasons.map(seasonStats => 
-                    <option key={seasonStats.season} value={seasonStats.season}>{seasonStats.season}</option>
-                )}
-            </select> */}
-            {/* <p>{statsByRegularSeason['2015-2016'].goals}</p> */}
-            <PlayerStats regularSeasonStats={statsByRegularSeason} nhlSeasons={nhlSeasons} playoffStats={statsByPlayoffSeason} />
+            {(position !== "G") &&<PlayerStats regularSeasonStats={statsByRegularSeason} nhlSeasons={nhlSeasons} playoffStats={statsByPlayoffSeason} />}
         </div>
     )
 }
