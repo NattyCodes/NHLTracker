@@ -18,8 +18,11 @@
     top: 60%;
     left: 50%;
     transform: translate(-50%, -50%);
-    -webkit-text-fill-color: white;
-    -webkit-text-stroke-width: 3px;
-    -webkit-text-stroke-color: black;
-    font-size: 6rem;
+    -webkit-text-fill-color: linear-gradient(45deg, #9c27b0, #f44336, #ff9800);
+    text-shadow: 
+    -2px -2px 0 #000, /* Top-left shadow */
+    2px -2px 0 #000,  /* Top-right shadow */
+    -2px 2px 0 #000,  /* Bottom-left shadow */
+    2px 2px 0 #000;
+    font-size: 5rem;
 }

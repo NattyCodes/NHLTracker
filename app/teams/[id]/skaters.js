@@ -14,7 +14,7 @@ const Skaters = (props) =>{
             <TableHead className={styles.head}>
             <TableRow>
                 <TableCell></TableCell>
-                <TableCell>Player</TableCell>
+                <TableCell>Name</TableCell>
                 <TableCell>Position</TableCell>
                 <TableCell>Points</TableCell>
                 <TableCell>Goals</TableCell>
@@ -23,10 +23,10 @@ const Skaters = (props) =>{
             </TableHead>
             <TableBody>
                 {Array.isArray(skaters) && skaters.map(skater =>
-                <TableRow key={skater.playerID} className={styles.row} onClick={() => {
+                <TableRow key={skater.playerID} className={styles.row} hover sx={{cursor: 'pointer'}} onClick={() => {
                 router.push(`../player/${skater.playerId}`);
                 }}>
-                    <TableCell><Image src={skater.headshot} width={60} height={60} alt={skater.firstName.default} ></Image></TableCell>
+                    <TableCell><Image src={skater.headshot} width={60} height={60} alt={skater.firstName.default} style={{ borderRadius: "100px"}}></Image></TableCell>
                     <TableCell>{skater.firstName.default} {skater.lastName.default}</TableCell>
                     <TableCell>{skater.positionCode}</TableCell>
                     <TableCell>{skater.points}</TableCell>

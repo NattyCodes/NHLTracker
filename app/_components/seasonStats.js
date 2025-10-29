@@ -1,21 +1,39 @@
 'use client'
+import { Table, TableBody, TableCell, TableHead, TableRow } from '@mui/material';
 import styles from '../../styles/seasonStats.module.scss';
 export const SeasonStats = (props) => {
-    const season = props.season;
     const stats = props.stats;
-    const gameType = props.gameType;
+
     return (
         <div>
-            <h2 className={styles.header}>{season} {gameType} Stats</h2>
-            <div className={styles.body}>
-                <p>Team: {stats.teamName.default}</p>
-                <p>Goals: {stats.goals}</p>
-                <p>Assists: {stats.assists}</p>
-                <p>Points: {stats.points}</p>
-                <p>Games Played: {stats.gamesPlayed}</p>
-                <p>Plus/Minus: {stats.plusMinus}</p>
-                <p>Shooting Percent: {(stats.shootingPctg).toPrecision(4)}%</p>
-            </div>
+            <Table>
+                <TableHead classes="head">
+                    <TableRow>
+                        <TableCell>Season</TableCell>
+                        <TableCell>Team</TableCell>
+                        <TableCell>Points</TableCell>
+                        <TableCell>Goals</TableCell>
+                        <TableCell>Assists</TableCell>
+                        <TableCell>Games Played</TableCell>
+                        <TableCell>Plus/Minus</TableCell>
+                        <TableCell>Shooting Percent</TableCell>
+                    </TableRow>
+                </TableHead>
+                <TableBody>
+                    {Array.isArray(stats) && stats.map(seasonStats =>
+                        <TableRow key={`${seasonStats.teamName.default}${seasonStats.season}`}>
+                            <TableCell>{`${seasonStats.season.toString().slice(0, 4)}-${seasonStats.season.toString().slice(4)}`}</TableCell>
+                            <TableCell>{seasonStats.teamName.default}</TableCell>
+                            <TableCell>{seasonStats.points}</TableCell>
+                            <TableCell>{seasonStats.goals}</TableCell>
+                            <TableCell>{seasonStats.assists}</TableCell>
+                            <TableCell>{seasonStats.gamesPlayed}</TableCell>
+                            <TableCell>{seasonStats.plusMinus}</TableCell>
+                            <TableCell>{seasonStats.shootingPctg.toPrecision(2)}</TableCell>
+                        </TableRow>
+                    )}
+                </TableBody>
+            </Table>
         </div>
     )
 }

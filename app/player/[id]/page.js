@@ -9,7 +9,7 @@ const player = async ({params}) => {
     const res = await fetch(`https://api-web.nhle.com/v1/player/${params.id}/landing`, { cache: 'no-store' });
     const playerInfo = await res.json();
     const position = playerInfo.position;
-    const height_feet = (playerInfo.heightInInches / 12).toFixed(0);
+    const height_feet = Math.floor((playerInfo.heightInInches / 12)).toFixed(0);
     const height_inches = playerInfo.heightInInches % 12
     const dom_hand = playerInfo.shootsCatches
     let nhlSeasons = []
@@ -90,7 +90,7 @@ const player = async ({params}) => {
                {(position !== "G") && "Shoots: "}
                {(dom_hand === "R") && "Right"}
                {(dom_hand === "L") && "Left"}</p>
-            <p>Height: {height_feet + "' " + height_inches + '"'}</p>
+            <p>Height: {height_feet + "' " + height_inches + '"' + playerInfo.heightInInches}</p>
             <p>Weight: {playerInfo.weightInPounds + " lbs"}</p>
             <p>Age: {getAge()}</p>
             <h2>Draft Information</h2>
