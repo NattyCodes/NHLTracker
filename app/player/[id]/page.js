@@ -66,6 +66,10 @@ const player = async ({params}) => {
                 position_name = "Defense";
                 break;
             }
+            case("G"): {
+                position_name = "Goalie"
+                break;
+            }
         }
         return position_name;
     }
@@ -90,7 +94,7 @@ const player = async ({params}) => {
                {(position !== "G") && "Shoots: "}
                {(dom_hand === "R") && "Right"}
                {(dom_hand === "L") && "Left"}</p>
-            <p>Height: {height_feet + "' " + height_inches + '"' + playerInfo.heightInInches}</p>
+            <p>Height: {height_feet + "' " + height_inches}</p>
             <p>Weight: {playerInfo.weightInPounds + " lbs"}</p>
             <p>Age: {getAge()}</p>
             <h2>Draft Information</h2>
@@ -103,7 +107,7 @@ const player = async ({params}) => {
             </div>}
             {playerInfo.draftDetails == null && <p>Undrafted</p>}
             <h2>Season Stats</h2>
-            {(position !== "G") &&<PlayerStats regularSeasonStats={statsByRegularSeason} nhlSeasons={nhlSeasons} playoffStats={statsByPlayoffSeason} />}
+            <PlayerStats regularSeasonStats={statsByRegularSeason} nhlSeasons={nhlSeasons} playoffStats={statsByPlayoffSeason} goalie={position === "G"}/>
         </div>
     )
 }

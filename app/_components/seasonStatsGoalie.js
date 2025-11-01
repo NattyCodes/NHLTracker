@@ -1,9 +1,8 @@
 'use client'
 import { Table, TableBody, TableCell, TableHead, TableRow } from '@mui/material';
 import styles from '../../styles/seasonStats.module.scss';
-export const SeasonStats = (props) => {
+export const SeasonStatsGoalie = (props) => {
     const stats = props.stats;
-
     return (
         <div>
             <Table>
@@ -11,12 +10,11 @@ export const SeasonStats = (props) => {
                     <TableRow>
                         <TableCell>Season</TableCell>
                         <TableCell>Team</TableCell>
-                        <TableCell>Points</TableCell>
-                        <TableCell>Goals</TableCell>
-                        <TableCell>Assists</TableCell>
                         <TableCell>Games Played</TableCell>
-                        <TableCell>Plus/Minus</TableCell>
-                        <TableCell>Shooting Percent</TableCell>
+                        <TableCell>Wins</TableCell>
+                        <TableCell>Shutouts</TableCell>
+                        <TableCell>Goals Against Average</TableCell>
+                        <TableCell>Save Percentage</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
@@ -24,12 +22,11 @@ export const SeasonStats = (props) => {
                         <TableRow key={`${seasonStats.teamName.default}${seasonStats.season}`}>
                             <TableCell>{`${seasonStats.season.toString().slice(0, 4)}-${seasonStats.season.toString().slice(4)}`}</TableCell>
                             <TableCell>{seasonStats.teamName.default}</TableCell>
-                            <TableCell>{seasonStats.points}</TableCell>
-                            <TableCell>{seasonStats.goals}</TableCell>
-                            <TableCell>{seasonStats.assists}</TableCell>
                             <TableCell>{seasonStats.gamesPlayed}</TableCell>
-                            <TableCell>{seasonStats.plusMinus}</TableCell>
-                            <TableCell>{seasonStats.shootingPctg.toPrecision(2)}</TableCell>
+                            <TableCell>{seasonStats.wins}</TableCell>
+                            <TableCell>{seasonStats.shutouts}</TableCell>
+                            <TableCell>{seasonStats.goalsAgainstAvg.toPrecision(3)}</TableCell>
+                            <TableCell>{seasonStats.savePctg.toPrecision(3)}</TableCell>
                         </TableRow>
                     )}
                 </TableBody>
