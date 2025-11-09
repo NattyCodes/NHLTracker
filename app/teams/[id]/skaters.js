@@ -23,7 +23,7 @@ const Skaters = (props) =>{
             </TableHead>
             <TableBody>
                 {Array.isArray(skaters) && skaters.map(skater =>
-                <TableRow key={`${skater.playerID}${skater.firstName.default}`} className={styles.row} hover sx={{cursor: 'pointer'}} onClick={() => {
+                <TableRow key={`${skater.playerId}${skater.firstName.default}`} className={styles.row} hover sx={{cursor: 'pointer'}} onClick={() => {
                 router.push(`../player/${skater.playerId}`);
                 }}>
                     <TableCell><Image src={skater.headshot} width={60} height={60} alt={skater.firstName.default} style={{ borderRadius: "100px"}}></Image></TableCell>
