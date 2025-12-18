@@ -2,7 +2,7 @@ import Image from 'next/image';
 import React from 'react';
 import "../../../styles/globals.scss";
 import styles from "../../../styles/Player.module.scss";
-import "../../convertAbrvToFull.js";
+import { getFullName } from '../../abrvToFull';
 import PlayerStats from './playerStats';
 
 const player = async ({params}) => {
@@ -28,7 +28,6 @@ const player = async ({params}) => {
     }
 
     const filterStats = () => {
-        console.log("Number of seasons played: " + playerInfo.seasonTotals.length)
         for(let i = playerInfo.seasonTotals.length - 1; i >= 0; i--) {
             let currSeason = playerInfo.seasonTotals[i]
             let formattedSeason = currSeason.season.toString().substring(0,4) + "-" + currSeason.season.toString().substring(4)
@@ -45,7 +44,6 @@ const player = async ({params}) => {
         }
     }
     filterStats()
-    console.log(playerInfo)
 
     const getPosition = () => {
         let position_name = ""
@@ -74,40 +72,50 @@ const player = async ({params}) => {
         return position_name;
     }
     return (
-        <div className={styles.container}>
-            <div className={styles.header_img_container}>
-                <Image src={playerInfo.heroImage} width={0} height={0} alt={`${playerInfo.firstName.default} ${playerInfo.lastName.default}`} sizes="50vw" style={{ width: '60%', height: '50vh', opacity:0.9}} priority></Image>
-                <h1 className={styles.centered}>{playerInfo.firstName.default} {playerInfo.lastName.default}</h1>
+        <div className={`${styles.container}`}>
+            <div className={`${styles.flex} ${styles.centered}`}>
+                <div>
+                    <Image src={playerInfo.headshot} width={100} height={100} alt={`${playerInfo.firstName.default} ${playerInfo.lastName.default}`} style={{ borderRadius: "100px"}} priority></Image>
+                </div>
+                <h1>{playerInfo.firstName.default} {playerInfo.lastName.default}</h1>
+                
+                <div>
+                    <Image src={playerInfo.teamLogo} width={100} height={100} alt={`${playerInfo.firstName.default} ${playerInfo.lastName.default}`} priority></Image>
+                </div>
+            </div>
+            <div className={styles.flex}>
+                <Image src={playerInfo.heroImage} width={0} height={0} alt={`${playerInfo.firstName.default} ${playerInfo.lastName.default}`} sizes="50vw" style={{ width: '60VW', height: 'auto', opacity:1, justifyContent: 'center', borderRadius: '25px'}} priority></Image>
+            </div>
+            <div className={styles.playerInfo}>
+                <h1>Player Info</h1>
+                <div>
+                    <h2>General Information</h2>
+                    <div className={styles.bodyText}>
+                        <p>Team: {playerInfo.fullTeamName.default}</p>
+                        <p>Number: {playerInfo.sweaterNumber}</p>
+                        <p>Position: {getPosition()}</p>
+                        <p>{(position === "G") && "Catches: "}
+                        {(position !== "G") && "Shoots: "}
+                        {(dom_hand === "R") && "Right"}
+                        {(dom_hand === "L") && "Left"}</p>
+                        <p>Height: {height_feet + "' " + height_inches}</p>
+                        <p>Weight: {playerInfo.weightInPounds + " lbs"}</p>
+                        <p>Age: {getAge()}</p>
+                    </div>
+                </div>
+                <div>
+                    <h2>Draft Information</h2>
+                    <div>
+                        {playerInfo.draftDetails != null && 
+                        <p>{playerInfo.firstName.default} {playerInfo.lastName.default} was drafted in round {playerInfo.draftDetails.round} of the {playerInfo.draftDetails.year} draft going {playerInfo.draftDetails.overallPick} overall to the {getFullName(playerInfo.draftDetails.teamAbbrev)}</p>}
+                        {playerInfo.draftDetails == null && <p>{playerInfo.firstName.default} {playerInfo.lastName.default} was not drafted in the NHL draft</p>}
+                    </div>
+                </div>
             </div>
             <div>
-                <Image src={playerInfo.headshot} width={100} height={100} alt={`${playerInfo.firstName.default} ${playerInfo.lastName.default}`} style={{ borderRadius: "100px"}} priority></Image>
+                <h2>Season Stats</h2>
+                <PlayerStats regularSeasonStats={statsByRegularSeason} nhlSeasons={nhlSeasons} playoffStats={statsByPlayoffSeason} goalie={position === "G"}/>
             </div>
-            <div>
-                <Image src={playerInfo.teamLogo} width={100} height={100} alt={`${playerInfo.firstName.default} ${playerInfo.lastName.default}`} priority></Image>
-            </div>
-            <h1>Player Info</h1>
-            <h2>General Information</h2>
-            <p>Team: {playerInfo.fullTeamName.default}</p>
-            <p>Number: {playerInfo.sweaterNumber}</p>
-            <p>Position: {getPosition()}</p>
-            <p>{(position === "G") && "Catches: "}
-               {(position !== "G") && "Shoots: "}
-               {(dom_hand === "R") && "Right"}
-               {(dom_hand === "L") && "Left"}</p>
-            <p>Height: {height_feet + "' " + height_inches}</p>
-            <p>Weight: {playerInfo.weightInPounds + " lbs"}</p>
-            <p>Age: {getAge()}</p>
-            <h2>Draft Information</h2>
-            {playerInfo.draftDetails != null &&
-            <div>
-            <p>Draft Year: {playerInfo.draftDetails.year}</p>
-            <p>Draft Round: {playerInfo.draftDetails.round}</p>
-            <p>Draft Position: {playerInfo.draftDetails.overallPick}</p>
-            <p>Drafted by: {playerInfo.draftDetails.teamAbbrev}</p>
-            </div>}
-            {playerInfo.draftDetails == null && <p>Undrafted</p>}
-            <h2>Season Stats</h2>
-            <PlayerStats regularSeasonStats={statsByRegularSeason} nhlSeasons={nhlSeasons} playoffStats={statsByPlayoffSeason} goalie={position === "G"}/>
         </div>
     )
 }

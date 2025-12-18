@@ -15,7 +15,7 @@ const PlayerStats = (props) => {
     }
 
     return (
-        <div className={styles.container}>
+        <div className={styles.stats}>
             <select name='gameType' id='gameType' onChange={e => setGameType(e.target.value)}>
                 <option value={"Regular"}>Regular Season</option>
                 <option value={"Playoffs"}>Playoffs</option>

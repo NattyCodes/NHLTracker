@@ -10,7 +10,7 @@ const Skaters = (props) =>{
     let skaters = props.skaters
     const router = useRouter()
     return (
-        <Table className={styles.table}>
+        <Table className={styles.table} size='small' stickyHeader>
             <TableHead className={styles.head}>
             <TableRow>
                 <TableCell></TableCell>

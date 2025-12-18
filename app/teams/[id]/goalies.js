@@ -8,9 +8,10 @@ import styles from "../../../styles/Home.module.scss";
 
 const Goalies = (props) =>{
     let goalies = props.goalies
+    console.log(goalies)
     const router = useRouter()
     return (
-        <Table className={styles.table}>
+        <Table className={styles.table} size='small'>
             <TableHead className={styles.head}>
             <TableRow>
                 <TableCell></TableCell>
@@ -23,15 +24,15 @@ const Goalies = (props) =>{
             </TableHead>
             <TableBody>
                 {Array.isArray(goalies) && goalies.map(goalie =>
-                <TableRow key={goalie.playerID} className={styles.row} hover sx={{cursor: 'pointer'}} onClick={() => {
+                <TableRow key={`${goalie.playerID}${goalie.firstName.default}`} className={styles.row} hover sx={{cursor: 'pointer'}} onClick={() => {
                 router.push(`../player/${goalie.playerId}`);
                 }}>
                     <TableCell><Image src={goalie.headshot} width={60} height={60} alt={goalie.firstName.default} style={{ borderRadius: "100px"}}></Image></TableCell>
                     <TableCell>{goalie.firstName.default} {goalie.lastName.default}</TableCell>
                     <TableCell>G</TableCell>
-                    <TableCell>{goalie.points}</TableCell>
-                    <TableCell>{goalie.goals}</TableCell>
-                    <TableCell>{goalie.assists}</TableCell>
+                    <TableCell>{goalie.gamesPlayed}</TableCell>
+                    <TableCell>{goalie.savePercentage.toPrecision(3)}</TableCell>
+                    <TableCell>{goalie.goalsAgainstAverage.toPrecision(3)}</TableCell>
                 </TableRow>)}
             </TableBody>
         </Table>

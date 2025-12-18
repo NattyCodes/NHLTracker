@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import "../styles/globals.scss";
 import styles from '../styles/Home.module.scss';
+import { addToDict } from "./abrvToFull";
 import Standings from "./standings";
 export const dynamic = 'force-dynamic'
 export default async function Home() {
