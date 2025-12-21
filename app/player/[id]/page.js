@@ -2,11 +2,12 @@ import Image from 'next/image';
 import React from 'react';
 import "../../../styles/globals.scss";
 import styles from "../../../styles/Player.module.scss";
-import { getFullName } from '../../abrvToFull';
+import { getFullName } from '../../_utils/abrvToFull';
 import PlayerStats from './playerStats';
 
 const player = async ({params}) => {
-    const res = await fetch(`https://api-web.nhle.com/v1/player/${params.id}/landing`, { cache: 'no-store' });
+    const props = await params
+    const res = await fetch(`https://api-web.nhle.com/v1/player/${props.id}/landing`, { cache: 'no-store' });
     const playerInfo = await res.json();
     const position = playerInfo.position;
     const height_feet = Math.floor((playerInfo.heightInInches / 12)).toFixed(0);
@@ -31,7 +32,6 @@ const player = async ({params}) => {
         for(let i = playerInfo.seasonTotals.length - 1; i >= 0; i--) {
             let currSeason = playerInfo.seasonTotals[i]
             let formattedSeason = currSeason.season.toString().substring(0,4) + "-" + currSeason.season.toString().substring(4)
-            // console.log(formattedSeason)
             if(currSeason.leagueAbbrev === "NHL") {
                 if(currSeason.gameTypeId === 2) {
                     statsByRegularSeason.push(currSeason);
@@ -71,6 +71,15 @@ const player = async ({params}) => {
         }
         return position_name;
     }
+    const appendText = (num = 1) => {
+        let suffix = "th";
+        if (num == 0) suffix = "";
+        if (num % 10 == 1 && num % 100 != 11) suffix = "st";
+        if (num % 10 == 2 && num % 100 != 12) suffix = "nd";
+        if (num % 10 == 3 && num % 100 != 13) suffix = "rd";
+
+        return num + suffix;
+    };
     return (
         <div className={`${styles.container}`}>
             <div className={`${styles.flex} ${styles.centered}`}>
@@ -107,7 +116,7 @@ const player = async ({params}) => {
                     <h2>Draft Information</h2>
                     <div>
                         {playerInfo.draftDetails != null && 
-                        <p>{playerInfo.firstName.default} {playerInfo.lastName.default} was drafted in round {playerInfo.draftDetails.round} of the {playerInfo.draftDetails.year} draft going {playerInfo.draftDetails.overallPick} overall to the {getFullName(playerInfo.draftDetails.teamAbbrev)}</p>}
+                        <p>{playerInfo.firstName.default} {playerInfo.lastName.default} was drafted in round {playerInfo.draftDetails.round} of the {playerInfo.draftDetails.year} draft going {appendText(playerInfo.draftDetails.overallPick)} overall to the {getFullName(playerInfo.draftDetails.teamAbbrev)}</p>}
                         {playerInfo.draftDetails == null && <p>{playerInfo.firstName.default} {playerInfo.lastName.default} was not drafted in the NHL draft</p>}
                     </div>
                 </div>

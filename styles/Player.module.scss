@@ -32,18 +32,12 @@
   align-items: center;     /* Centers vertically along the cross axis */
 }
 
-// .playerInfo {
-//     display: block;
-// }
-
 .bodyText {
     display: flex;
     justify-content: baseline;
     flex-wrap: wrap;
-    // width: auto;
 
     p {
-        // display: inline-block;
         margin-right: 30px;
         width: 15vw;
     }

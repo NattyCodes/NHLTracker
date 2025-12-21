@@ -8,7 +8,6 @@ import styles from "../../../styles/Home.module.scss";
 
 const Goalies = (props) =>{
     let goalies = props.goalies
-    console.log(goalies)
     const router = useRouter()
     return (
         <Table className={styles.table} size='small'>
