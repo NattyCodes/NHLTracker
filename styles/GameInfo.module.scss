@@ -1,0 +1,91 @@
+
+.teamScoreContainer {
+    display: flex;
+    width: 33%;
+}
+
+.playerCardContainer {
+    display: flex;
+    margin: 0px 45px 20px 45px;
+}
+
+.primaryImage {
+    margin-right: 15px;
+}
+
+.generalInfoContainer {
+    display: grid;
+    grid-template-columns: 85% 15%;
+    column-gap: 20px;
+    width: 20vw;
+}
+
+.nameContainer {
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.primaryInfoContainer {
+    grid-column: 2;
+    grid-row: 1 / 3;
+    font-size: 30px;
+    font-weight: 600;
+
+    display: grid;
+    place-items: center;
+
+    div {
+        font-size: 15px;
+        font-weight: 600;
+    }
+}
+
+.secondaryInfoContainer {
+    grid-column: 1;
+    grid-row: 2;
+    font-size: 12px;
+}
+
+.gameScoreContainer {
+    display: flex;
+    justify-content: space-around; /* Centers horizontally along the main axis */
+    align-items: center;     /* Centers vertically along the cross axis */
+}
+
+.cardHeader {
+    display: flex;
+    justify-content: center; /* Centers horizontally along the main axis */
+    margin: 10px;
+}
+.gameCardContainer {
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+
+.flex {
+    display: flex;
+
+}
+
+.overflowScroll {
+    overflow: scroll;
+    overflow-y: hidden;
+}
+
+.tertiaryContainer {
+    display: flex;
+    p {
+        margin-right: 10px;
+    }
+}
+
+.teamLeaderContainer {
+    
+    h1 {
+        font-size: 20px;
+        font-weight: 400;
+        margin-left: 20px;
+    }
+}

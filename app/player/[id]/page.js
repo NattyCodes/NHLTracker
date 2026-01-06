@@ -1,3 +1,4 @@
+import { addSuffix } from '@/app/_utils/addSuffix';
 import Image from 'next/image';
 import React from 'react';
 import "../../../styles/globals.scss";
@@ -36,7 +37,6 @@ const player = async ({params}) => {
                 if(currSeason.gameTypeId === 2) {
                     statsByRegularSeason.push(currSeason);
                     nhlSeasons.push(`${currSeason.season} ${currSeason.teamName.default}`);
-                    // statsByPlayoffSeason.push("")
                 } else if (currSeason.gameTypeId === 3){
                     statsByPlayoffSeason.push(currSeason);
                 }
@@ -71,15 +71,6 @@ const player = async ({params}) => {
         }
         return position_name;
     }
-    const appendText = (num = 1) => {
-        let suffix = "th";
-        if (num == 0) suffix = "";
-        if (num % 10 == 1 && num % 100 != 11) suffix = "st";
-        if (num % 10 == 2 && num % 100 != 12) suffix = "nd";
-        if (num % 10 == 3 && num % 100 != 13) suffix = "rd";
-
-        return num + suffix;
-    };
     return (
         <div className={`${styles.container}`}>
             <div className={`${styles.flex} ${styles.centered}`}>
@@ -116,7 +107,7 @@ const player = async ({params}) => {
                     <h2>Draft Information</h2>
                     <div>
                         {playerInfo.draftDetails != null && 
-                        <p>{playerInfo.firstName.default} {playerInfo.lastName.default} was drafted in round {playerInfo.draftDetails.round} of the {playerInfo.draftDetails.year} draft going {appendText(playerInfo.draftDetails.overallPick)} overall to the {getFullName(playerInfo.draftDetails.teamAbbrev)}</p>}
+                        <p>{playerInfo.firstName.default} {playerInfo.lastName.default} was drafted in round {playerInfo.draftDetails.round} of the {playerInfo.draftDetails.year} draft going {addSuffix(playerInfo.draftDetails.overallPick)} overall to the {getFullName(playerInfo.draftDetails.teamAbbrev)}</p>}
                         {playerInfo.draftDetails == null && <p>{playerInfo.firstName.default} {playerInfo.lastName.default} was not drafted in the NHL draft</p>}
                     </div>
                 </div>

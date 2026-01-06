@@ -23,13 +23,13 @@
 
 .centered {
     display: grid;
-  place-items: center;
+    place-items: center;
 }
 
 .flex {
     display: flex;
-     justify-content: center; /* Centers horizontally along the main axis */
-  align-items: center;     /* Centers vertically along the cross axis */
+    justify-content: center; /* Centers horizontally along the main axis */
+    align-items: center;     /* Centers vertically along the cross axis */
 }
 
 .bodyText {
