@@ -1,8 +1,6 @@
 import Image from 'next/image';
 import React from 'react';
-// import styles from "../../../styles/globals.scss";
 import common from "../../../styles/Common.module.scss";
-// import style from "../../../styles/Player.module.scss";
 import Goalies from "./goalies.js";
 import Skaters from "./skaters.js";
 
@@ -24,8 +22,10 @@ const Teams = async ({params, searchParams}) => {
     let name = searchParams.name
   return (
     <div className={`${common.container}`}>
-        <Image src={logo} width={40} height={40} alt={ params.id }></Image>
-        <h1>{name}</h1>
+        <div className={common.flexCentered}>
+          <Image src={logo} width={80} height={80} alt={ params.id }></Image>
+          <h1>{name}</h1>
+        </div>
         <h2>Skaters</h2>
         <Skaters skaters={skaters}></Skaters>
         <h2>Goalies</h2>
