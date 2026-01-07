@@ -3,13 +3,13 @@ import Image from 'next/image';
 import { CgPlayButtonR } from "react-icons/cg";
 import gameInfoStyles from '../../styles/GameInfo.module.scss';
 import { addSuffix } from '../_utils/addSuffix';
-const GameCard = async (props) => {
-    const gameInfo = await props.gameInfo
+const GameCard = (props) => {
+    const gameInfo = props.gameInfo
     const homeTeam = gameInfo.homeTeam
     const awayTeam = gameInfo.awayTeam
     console.log(gameInfo)
 
-    const TeamScore = async ({logoLink, teamName, primaryInfo, secondaryInfo}) =>{
+    const TeamScore = ({logoLink, teamName, primaryInfo, secondaryInfo}) =>{
         return(
             <div className={gameInfoStyles.teamScoreContainer}>
                 <div className={gameInfoStyles.primaryImage}>
@@ -77,10 +77,18 @@ const GameCard = async (props) => {
     }
 
     const PlayedGameCard = ({gameInfo}) => {
+        let period = 1;
+        if (gameInfo.period < 4) {
+            period = addSuffix(gameInfo.period)
+        } else if (gameInfo.period === 4) {
+            period = "OT";
+        } else {
+            period = "SO";
+        }
         return (
             <div className={gameInfoStyles.gameCardContainer}>
                 <div className={gameInfoStyles.cardHeader}>
-                    {gameInfo.gameState === 'Final' || gameInfo.gameState == 'OFF' ? "Final" : "Live"}
+                    {gameInfo.gameState === 'Final' || gameInfo.gameState == 'OFF' ? "Final" : `${period} • ${gameInfo.clock.timeRemaining}`}
                 </div>  
                 <div className={gameInfoStyles.gameScoreContainer}>
                     <TeamScore logoLink={homeTeam.logo} teamName={homeTeam.name.default} primaryInfo={homeTeam.score} secondaryInfo={`SOG: ${homeTeam.sog}`}/>
@@ -92,7 +100,7 @@ const GameCard = async (props) => {
                     <div className={`${gameInfoStyles.flex} ${gameInfoStyles.overflowScroll}`}>
                         {Array.isArray(gameInfo.goals) && gameInfo.goals.map(goal =>
                             <GoalPlayerCard 
-                                key={goal.highlightClip}
+                                key={`${goal.playerId}${goal.period}${goal.timeInPeriod}`}
                                 goalInfo={goal}
                                 homeTeam={homeTeam.abbrev}
                                 awayTeam={awayTeam.abbrev}
@@ -109,10 +117,10 @@ const GameCard = async (props) => {
         const morningAfternoon = date.getHours() > 12 ? "PM" : "AM"
         const hours = date.getHours() > 12 ? date.getHours() - 12 : date.getHours();
         const minutes = date.getMinutes() < 10 ? date.getMinutes() + "0" : date.getMinutes()
-        let homeOdds = -1;
-        let awayOdds = -1;
+        let homeOdds = "";
+        let awayOdds = "";
 
-        for(let i = 0; i < homeTeam.odds.length; i++) {
+        for(let i = 0; i < homeTeam?.odds?.length; i++) {
             if(homeTeam.odds[i].providerId == 7) {
                 homeOdds = homeTeam.odds[i].value;
                 awayOdds = awayTeam.odds[i].value;

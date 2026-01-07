@@ -19,3 +19,19 @@
     margin: 0%;
 }
 }
+
+.buttonContainer {
+    margin-top: 25px;
+    width: 100%;
+
+    button {
+        text-transform: none;
+        outline: none;
+        border: none;
+    }
+}
+
+.centered {
+    display: grid;
+    place-items: center;
+}

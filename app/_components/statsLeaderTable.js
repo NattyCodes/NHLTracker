@@ -3,6 +3,7 @@ import { Button, ButtonGroup, Table, TableBody, TableCell, TableHead, TableRow }
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
+import common from '../../styles/Common.module.scss';
 import playerStyle from "../../styles/Player.module.scss";
 import styles from '../../styles/seasonStats.module.scss';
 import statsStyles from '../../styles/Stats.module.scss';
@@ -26,19 +27,23 @@ export const StatsLeaderTable = (props) => {
             <div className={statsStyles.statSelectorContainer}>
                 <div className={statsStyles.statSelectorChild}>
                     <h3>Player Stats</h3>
-                    <ButtonGroup aria-label="Medium-sized button group" variant="text">
-                        <Button onClick={() => updateStats("Points","points","skater")}>points</Button>
-                        <Button onClick={() => updateStats("Goals","goals","skater")}>goals</Button>
-                        <Button onClick={() => updateStats("Assists","assists","skater")}>assists</Button>
-                    </ButtonGroup>
+                    <div className={common.buttonContainer}>
+                        <ButtonGroup aria-label="Medium-sized button group" variant="text">
+                            <Button onClick={() => updateStats("Points","points","skater")}>Points</Button>
+                            <Button onClick={() => updateStats("Goals","goals","skater")}>Goals</Button>
+                            <Button onClick={() => updateStats("Assists","assists","skater")}>Assists</Button>
+                        </ButtonGroup>
+                    </div>
                 </div>
                 <div className={statsStyles.statSelectorChild}>
                     <h3>Goalie Stats</h3>
-                    <ButtonGroup aria-label="Medium-sized button group" variant="text">
-                        <Button onClick={() => updateStats("Goals Against Average","goalsAgainstAverage","goalie")}>GAA</Button>
-                        <Button onClick={() => updateStats("Save Percentage","savePctg","goalie")}>SV %</Button>
-                        <Button onClick={() => updateStats("Shutouts","shutouts","goalie")}>Shutouts</Button>
-                    </ButtonGroup>
+                    <div className={common.buttonContainer}>
+                        <ButtonGroup aria-label="Medium-sized button group" variant="text">
+                            <Button onClick={() => updateStats("Goals Against Average","goalsAgainstAverage","goalie")}>GAA</Button>
+                            <Button onClick={() => updateStats("Save Percentage","savePctg","goalie")}>SV %</Button>
+                            <Button onClick={() => updateStats("Shutouts","shutouts","goalie")}>Shutouts</Button>
+                        </ButtonGroup>
+                    </div>
                 </div>
             </div>
             <h1>{currStat} Leaders</h1>
