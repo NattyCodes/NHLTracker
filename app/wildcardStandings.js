@@ -35,18 +35,24 @@ export const WildcardStandings = (props) => {
       }, [leagueStandings])
     return (
         <>
-        <div>
-            <h1>Eastern</h1>
-            <StandingsTable standings={atlaticStandings} standingsHeader={"Atlatic"} />
-            <StandingsTable standings={metropolitanStandings} standingsHeader={"Metropolitan"} />
-            <StandingsTable standings={easternWildcard} standingsHeader={"Wildcard"} />
-        </div>
-        <div>
-            <h1>Western</h1>
-            <StandingsTable standings={pacificStandings} standingsHeader={"Pacific"} />
-            <StandingsTable standings={centralStandings} standingsHeader={"Central"} />
-            <StandingsTable standings={westernWildcard} standingsHeader={"Wildcard"} />
-        </div>
+            <h1>Playoffs Race</h1>
+            <p>
+                For the NHL playoffs the top 3 teams from each division (Atlantic, Pacific, Metropolitan, Central) are selected to make up the top 12 spots.
+                after that the next 2 teams in the standings of each conference (East and West) are taken in wildcard spots making up the  remaining 4 teams 
+                in the 16 team playoff format.
+            </p>
+            <div>
+                <h2>Eastern</h2>
+                <StandingsTable standings={atlaticStandings} standingsHeader={"Atlatic"} />
+                <StandingsTable standings={metropolitanStandings} standingsHeader={"Metropolitan"} />
+                <StandingsTable standings={easternWildcard} standingsHeader={"Wildcard"} />
+            </div>
+            <div>
+                <h2>Western</h2>
+                <StandingsTable standings={pacificStandings} standingsHeader={"Pacific"} />
+                <StandingsTable standings={centralStandings} standingsHeader={"Central"} />
+                <StandingsTable standings={westernWildcard} standingsHeader={"Wildcard"} />
+            </div>
         </>
     )
 }

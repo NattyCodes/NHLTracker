@@ -32,10 +32,10 @@ export const StandingsTable = (props) => {
             </TableRow>
             </TableHead>
         <TableBody>
-                {Array.isArray(renderedStandings) && renderedStandings.map(team =>
-                <TableRow key={team.teamAbbrev.default} className={styles.row} onClick={() => {
+                {Array.isArray(renderedStandings) && renderedStandings.map((team, index, array) =>
+                <TableRow key={team.teamAbbrev.default} className={standingsHeader === 'Wildcard' && index === 1 ? styles.cutoff : ""} onClick={() => {
                     router.push(`/teams/${team.teamAbbrev.default}?` + createQueryString("name", team.teamName.default));
-                }} hover sx={{cursor: 'pointer'}}>
+                }} hover sx={{cursor: 'pointer' }}>
                     <TableCell><Image src={team.teamLogo} width={40} height={40} alt={team.teamAbbrev.default}></Image></TableCell>
                     <TableCell>{team.teamName.default}</TableCell>
                     <TableCell>{team.points}</TableCell>
