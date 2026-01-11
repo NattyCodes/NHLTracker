@@ -2,8 +2,9 @@
 import { Button, ButtonGroup } from "@mui/material";
 import { useEffect, useState } from "react";
 import common from "../../styles/Common.module.scss";
-import GameCard from "../_components/gameCard";
+import GameCard from "../_components/GameCard/gameCard";
 import { fetchScores } from '../_utils/fetchScores';
+import styles from "./scores.module.scss";
 const Scores = () => {
     let currDate = new Date().toJSON().slice(0,10);
     const [date, setDate] = useState(currDate)
@@ -41,12 +42,12 @@ const Scores = () => {
     if (!dayScores) return <p>No games today</p>
     return (
         <div className={common.container}>
-            <div className={`${common.buttonContainer} ${common.centered}`}>
+            <div className={`${styles.buttonContainer} ${common.centered}`}>
                 <ButtonGroup variant="outlined" aria-label="Basic button group">
                     <Button onClick={() => handleClick(dayScores.gameWeek[0].date)}>{formatDate(dayScores.gameWeek[0].date)}</Button>
                     <Button onClick={() => handleClick(dayScores.gameWeek[1].date)}>{formatDate(dayScores.gameWeek[1].date)}</Button>
                     <Button onClick={() => handleClick(dayScores.gameWeek[2].date)}>{formatDate(dayScores.gameWeek[2].date)}</Button>
-                    <Button variant="contained">{formatDate(dayScores.gameWeek[3].date)}</Button>
+                    <Button className={styles.active}>{formatDate(dayScores.gameWeek[3].date)}</Button>
                     <Button onClick={() => handleClick(dayScores.gameWeek[4].date)}>{formatDate(dayScores.gameWeek[4].date)}</Button>
                     <Button onClick={() => handleClick(dayScores.gameWeek[5].date)}>{formatDate(dayScores.gameWeek[5].date)}</Button>
                     <Button onClick={() => handleClick(dayScores.gameWeek[6].date)}>{formatDate(dayScores.gameWeek[6].date)}</Button>

@@ -1,8 +1,8 @@
 
 import Image from 'next/image';
 import { CgPlayButtonR } from "react-icons/cg";
-import gameInfoStyles from '../../styles/GameInfo.module.scss';
-import { addSuffix } from '../_utils/addSuffix';
+import { addSuffix } from '../../_utils/addSuffix';
+import gameInfoStyles from './GameInfo.module.scss';
 const GameCard = (props) => {
     const gameInfo = props.gameInfo
     const homeTeam = gameInfo.homeTeam

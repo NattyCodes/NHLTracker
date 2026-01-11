@@ -25,9 +25,16 @@
     width: 100%;
 
     button {
+        color: $primary-color-9;
+        margin-right: 5px;
+        background-color: $neutral-color-2;
         text-transform: none;
         outline: none;
         border: none;
+    }
+
+    button:hover {
+        background-color: $neutral-color-3;
     }
 }
 

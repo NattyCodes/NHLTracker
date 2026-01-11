@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 import common from '../styles/Common.module.scss';
 import "../styles/globals.scss";
-import { StandingsTable } from './_components/standingsTable';
+import { StandingsTable } from './_components/StandingsTable/standingsTable';
 import { WildcardStandings } from './wildcardStandings';
 const Standings = (props) => {
   const [selectedConference, setSelectedConference] = useState("League");
@@ -45,7 +45,7 @@ const Standings = (props) => {
   return (
     <div className={common.container}>
       <div className={`${common.buttonContainer} ${common.centered}`}>
-        <ButtonGroup aria-label="Medium-sized button group" variant="text">
+        <ButtonGroup aria-label="Medium-sized button group">
             <Button onClick={() => updateStandingsTopLevel("League")}>League</Button>
             <Button onClick={() => updateStandingsTopLevel("Eastern")}>East</Button>
             <Button onClick={() => updateStandingsTopLevel("Western")}>West</Button>

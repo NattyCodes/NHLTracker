@@ -1,0 +1,14 @@
+@import '../../../styles/colors.scss';
+.bar {
+    color: $primary-color-9;
+    background-color: $neutral-color-2;
+
+    button {
+        color: $primary-color-9;
+        font-weight: 525;
+    }
+
+    header {
+        background-color: $neutral-color-2;
+    }
+}

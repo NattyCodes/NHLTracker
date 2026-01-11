@@ -1,4 +1,4 @@
-
+@import '../../../styles/colors.scss';
 .gridContainer {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -31,9 +31,32 @@
 
 .statSelectorChild {
     flex: 1; /* Each child takes an equal share of the remaining space */
-    /* Add other styling like borders/background for visibility */
     padding: 10px;
     margin-top: 10px;
     justify-content: center; /* Centers horizontally along the main axis */
     align-items: center;     /* Centers vertically along the cross axis */
+}
+
+.head{
+    tr {
+        th{
+            color: $primary-color-9;
+            background-color: $neutral-color-2;
+        }
+    }
+}
+
+.row{
+    background-color: $neutral-color-1;
+    color: $primary-color-9;
+    text-align: center;
+    border-bottom: #030136 1px solid;
+
+    td {
+        color: $primary-color-9;
+    }
+}
+
+.row:hover {
+    background-color: $neutral-color-2;
 }

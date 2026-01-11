@@ -1,9 +1,9 @@
 'use client'
-import { SeasonStatsGoalie } from "@/app/_components/seasonStatsGoalie";
+import { SeasonStatsGoalie } from "@/app/_components/SeasonStats/seasonStatsGoalie";
 import { useEffect, useState } from "react";
 import "../../../styles/globals.scss";
 import styles from "../../../styles/Player.module.scss";
-import { SeasonStatsPlayer } from '../../_components/seasonStatsPlayer.js';
+import { SeasonStatsPlayer } from '../../_components/SeasonStats/seasonStatsPlayer.js';
 const PlayerStats = (props) => {
     const regularSeasonStats = props.regularSeasonStats;
     const playoffStats = props.playoffStats;

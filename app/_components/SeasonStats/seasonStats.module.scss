@@ -1,0 +1,29 @@
+@import '../../../styles/colors.scss';
+
+.head{
+    tr {
+        th{
+            color: $primary-color-9;
+            background-color: $neutral-color-2;
+        }
+    }
+}
+
+.row{
+    background-color: $neutral-color-1;
+    color: $primary-color-9;
+    text-align: center;
+    border-bottom: #030136 1px solid;
+
+    td {
+        color: $primary-color-9;
+    }
+}
+
+.header {
+    color: $primary-color-9;
+}
+
+.table {
+    margin-top: 20px;
+}

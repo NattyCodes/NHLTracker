@@ -2,8 +2,8 @@
 import { Table, TableBody, TableCell, TableHead, TableRow } from '@mui/material';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import "../../styles/globals.scss";
-import styles from '../../styles/Home.module.scss';
+import "../../../styles/globals.scss";
+import styles from './standingsTable.module.scss';
 export const StandingsTable = (props) => {
   const standingsHeader = props.standingsHeader
   const renderedStandings = props.standings
@@ -18,9 +18,9 @@ export const StandingsTable = (props) => {
 
   return(
     <>
-        <h2>{standingsHeader}</h2>
+        <h2 className={styles.header}>{standingsHeader}</h2>
         <Table stickyHeader aria-label="sticky table" size='small'>
-            <TableHead classes="head">
+            <TableHead className={styles.head}>
             <TableRow>
                 <TableCell></TableCell>
                 <TableCell>Team</TableCell>
@@ -33,9 +33,9 @@ export const StandingsTable = (props) => {
             </TableHead>
         <TableBody>
                 {Array.isArray(renderedStandings) && renderedStandings.map((team, index, array) =>
-                <TableRow key={team.teamAbbrev.default} className={standingsHeader === 'Wildcard' && index === 1 ? styles.cutoff : ""} onClick={() => {
+                <TableRow key={team.teamAbbrev.default} className={standingsHeader === 'Wildcard' && index === 1 ? `${styles.cutoff} ${styles.row}` : styles.row} onClick={() => {
                     router.push(`/teams/${team.teamAbbrev.default}?` + createQueryString("name", team.teamName.default));
-                }} hover sx={{cursor: 'pointer' }}>
+                }} sx={{cursor: 'pointer' }}>
                     <TableCell><Image src={team.teamLogo} width={40} height={40} alt={team.teamAbbrev.default}></Image></TableCell>
                     <TableCell>{team.teamName.default}</TableCell>
                     <TableCell>{team.points}</TableCell>

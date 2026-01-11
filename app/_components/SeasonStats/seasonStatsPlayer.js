@@ -1,13 +1,13 @@
 'use client'
 import { Table, TableBody, TableCell, TableHead, TableRow } from '@mui/material';
-import styles from '../../styles/seasonStats.module.scss';
+import styles from './seasonStats.module.scss';
 export const SeasonStatsPlayer = (props) => {
     const stats = props.stats;
 
     return (
         <div>
-            <Table>
-                <TableHead classes="head">
+            <Table className={styles.table}>
+                <TableHead className={styles.head}>
                     <TableRow>
                         <TableCell>Season</TableCell>
                         <TableCell>Team</TableCell>
@@ -21,7 +21,7 @@ export const SeasonStatsPlayer = (props) => {
                 </TableHead>
                 <TableBody>
                     {Array.isArray(stats) && stats.map(seasonStats =>
-                        <TableRow key={`${seasonStats.teamName.default}${seasonStats.season}`}>
+                        <TableRow key={`${seasonStats.teamName.default}${seasonStats.season}`} className={styles.row}>
                             <TableCell>{`${seasonStats.season.toString().slice(0, 4)}-${seasonStats.season.toString().slice(4)}`}</TableCell>
                             <TableCell>{seasonStats.teamName.default}</TableCell>
                             <TableCell>{seasonStats.points}</TableCell>

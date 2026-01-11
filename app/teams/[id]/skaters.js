@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import React from 'react';
 import "../../../styles/globals.scss";
-import styles from "../../../styles/Home.module.scss";
+import styles from "./teams.module.scss";
 
 const Skaters = (props) =>{
     let skaters = props.skaters
@@ -23,7 +23,7 @@ const Skaters = (props) =>{
             </TableHead>
             <TableBody>
                 {Array.isArray(skaters) && skaters.map(skater =>
-                <TableRow key={`${skater.playerId}${skater.firstName.default}`} className={styles.row} hover sx={{cursor: 'pointer'}} onClick={() => {
+                <TableRow key={`${skater.playerId}${skater.firstName.default}`} className={styles.row} sx={{cursor: 'pointer'}} onClick={() => {
                 router.push(`../player/${skater.playerId}`);
                 }}>
                     <TableCell><Image src={skater.headshot} width={60} height={60} alt={skater.firstName.default} style={{ borderRadius: "100px"}}></Image></TableCell>
