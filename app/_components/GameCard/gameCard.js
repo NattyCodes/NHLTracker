@@ -88,7 +88,7 @@ const GameCard = (props) => {
         return (
             <div className={gameInfoStyles.gameCardContainer}>
                 <div className={gameInfoStyles.cardHeader}>
-                    {gameInfo.gameState === 'Final' || gameInfo.gameState == 'OFF' ? "Final" : `${period} • ${gameInfo.clock.timeRemaining}`}
+                    {gameInfo.gameState.toLowerCase() === 'final' || gameInfo.gameState == 'off' ? `Final${period=="3rd" ? "" : "/"+period}` : `${period} • ${gameInfo.clock.timeRemaining}`}
                 </div>  
                 <div className={gameInfoStyles.gameScoreContainer}>
                     <TeamScore logoLink={homeTeam.logo} teamName={homeTeam.name.default} primaryInfo={homeTeam.score} secondaryInfo={`SOG: ${homeTeam.sog}`}/>

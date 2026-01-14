@@ -6,8 +6,7 @@ import GameCard from "../_components/GameCard/gameCard";
 import { fetchScores } from '../_utils/fetchScores';
 import styles from "./scores.module.scss";
 const Scores = () => {
-    let currDate = new Date().toJSON().slice(0,10);
-    const [date, setDate] = useState(currDate)
+    const [date, setDate] = useState('now')
     const [dayScores, setDayScores] = useState(null)
     const [isLoading, setLoading] = useState(true)
 
